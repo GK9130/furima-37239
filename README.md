@@ -21,14 +21,15 @@
 
 ##  destinationテーブル
 
-| Column           | Type      | Options                        |
-| ---------------- | --------- | -------------------------------|
-| post_code        | string    | null: false                    |
-| prefecture_id    | integer   | null: false                    |
-| city             | string    | null: false                    |
-| address          | string    | null: false                    |
-| building_name    | string    |                                |
-| phone_number     | string    | null: false                    |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| post_code        | string     | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| city             | string     | null: false                    |
+| address          | string     | null: false                    |
+| building_name    | string     |                                |
+| phone_number     | string     | null: false                    |
+| purchase         | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -37,16 +38,16 @@
 
 ##  productsテーブル
 
-| Column           | Type       | Option                         |
-| ---------------- | ---------- | ------------------------------ |
-| name             | string     | null: false                    |
-| price            | integer    | null: false                    |
-| description      | text       | null: false                    |
-| prefecture_id    | integer    | null: false                    |
-| category_id      | integer    | null: false, foreign_key: true |
-| brand_id         | integer    | null: false, foreign_key: true |
-| shipping_id      | integer    | null: false, foreign_key: true |
-| user             | references | null: false, foreign_key: true |
+| Column           | Type       | Option      |
+| ---------------- | ---------- | ----------- |
+| name             | string     | null: false |
+| price            | integer    | null: false |
+| description      | text       | null: false |
+| prefecture_id    | integer    | null: false |
+| category_id      | integer    | null: false |
+| brand_id         | integer    | null: false |
+| shipping_id      | integer    | null: false |
+| user             | references | null: false |
 
 ### Association
 
