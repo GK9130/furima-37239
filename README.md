@@ -16,58 +16,56 @@
 ### Association
 
 - has_many :products 
-- has_many :items
+- has_many :purchases
 
 
 ##  destinationテーブル
 
-| Column           | Type    | Options                        |
-| ---------------- | ------- | -------------------------------|
-| user_id          | integer | null: false                    |
-| post_code        | string  | null: false                    |
-| prefecture       | integer | null: false                    |
-| city             | string  | null: false                    |
-| address          | string  | null: false                    |
-| building_name    | string  |                                |
-| phone_number     | string  | null: false                    |
+| Column           | Type      | Options                        |
+| ---------------- | --------- | -------------------------------|
+| post_code        | string    | null: false                    |
+| prefecture_id    | integer   | null: false                    |
+| city             | string    | null: false                    |
+| address          | string    | null: false                    |
+| building_name    | string    |                                |
+| phone_number     | string    | null: false                    |
 
 ### Association
 
-- belongs_to :items
+- belongs_to :purchase
 
 
 ##  productsテーブル
 
-| Column           | Type    | Option                         |
-| ---------------- | ------- | ------------------------------ |
-| name             | string  | null: false                    |
-| price            | string  | null: false                    |
-| description      | string  | null: false                    |
-| prefecture_id    | string  | null: false                    |
-| judgment         | string  |                                |
-| category_id      | integer | null: false, foreign_key: true |
-| brand_id         | integer | null: false, foreign_key: true |
-| shipping_id      | integer | null: false, foreign_key: true |
-| user_id          | integer | null: false, foreign_key: true |
+| Column           | Type       | Option                         |
+| ---------------- | ---------- | ------------------------------ |
+| name             | string     | null: false                    |
+| price            | integer    | null: false                    |
+| description      | text       | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| category_id      | integer    | null: false, foreign_key: true |
+| brand_id         | integer    | null: false, foreign_key: true |
+| shipping_id      | integer    | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :items
-
-- belongs_to_active_hash :prefecture
+- has_one :purchase
 
 
-##  itemsテーブル
+##  purchaseテーブル
 
-| Column           | Type    | Option                         |
-| ---------------- | ------- | ------------------------------ |
-| user_id          | string  | null: false                    |
-| product_id       | string  | null: false                    |
+| Column           | Type       | Option                         |
+| ---------------- | ---------- | ------------------------------ |
+| user             | references | null: false, foreign_key :true |
+| product          | references | null: false, foreign_key :true |
 
 ### Association
 
-- belongs_to :products
+- belongs_to :product
+- belongs_to :user
+- has_one :destination
 
 
 
