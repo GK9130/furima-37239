@@ -40,14 +40,15 @@
 
 | Column           | Type       | Option      |
 | ---------------- | ---------- | ----------- |
-| name             | string     | null: false |
-| price            | integer    | null: false |
-| description      | text       | null: false |
-| prefecture_id    | integer    | null: false |
-| category_id      | integer    | null: false |
-| brand_id         | integer    | null: false |
-| shipping_id      | integer    | null: false |
 | user             | references | null: false |
+| name             | string     | null: false |
+| description      | text       | null: false |
+| category_id      | integer    | null: false |
+| condition_id     | integer    | null: false |
+| charge_id        | integer    | null: false |
+| prefecture_id    | integer    | null: false |
+| shipping_id      | integer    | null: false |
+| price            | integer    | null: false |
 
 ### Association
 
