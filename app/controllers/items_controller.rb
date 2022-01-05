@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :show, :update, :destroy]
 
   def index
+    # @item = Item.all
   end
 
   def new
@@ -10,6 +11,12 @@ class ItemsController < ApplicationController
   end
 
   def create
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def show
@@ -22,12 +29,17 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    # if @item.destroy
+    #   redirect_to root_path
+    # else
+    #   render :show
+    # end
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:name, :image, :explanation, :price, :category_id, :status_id, :postage_id, :prefecture_id, :shipping_day_id).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :image, :description, :category_id, :condition_id, :charge_id, :prefecture_id, :shipping_id, :price).merge(user_id: current_user.id)
   end
 
   def move_to_index
