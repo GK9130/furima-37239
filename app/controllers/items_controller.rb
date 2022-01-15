@@ -4,8 +4,7 @@ class ItemsController < ApplicationController
   # before_action :set_item, only: [:edit, :show, :update, :destroy]
 
   def index
-    # @items = Item.
-    # @items.order('created_at DESC')
+     @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -44,11 +43,11 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :image, :description, :category_id, :condition_id, :prefecture_id, :postage_id, :shipping_id, :price).merge(user_id: current_user.id)
   end
 
-  # def move_to_index
-  #   redirect_to action: :index unless user_signed_in?
-  # end
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
+  end
 
-  # def set_item
-  #   @item = Item.find(params[:id])
-  # end
+  def set_item
+    @item = Item.find(params[:id])
+  end
 end
