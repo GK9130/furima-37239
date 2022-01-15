@@ -11,7 +11,6 @@ window.addEventListener('load', () => {
   
   // 出品価格から販売手数料を引く処理
   ProfitDom.innerHTML = inputValue - addTaxDom.innerHTML;
-  console.log(inputValue);
   })
 });
 
