@@ -1,23 +1,25 @@
 class ItemsController < ApplicationController
-  # before_action :authenticate_user!, only: [:new, :edit, :update, :destory]
+  before_action :authenticate_user!, only: [:new]
+  # :edit, :update, :destory
   # before_action :set_item, only: [:edit, :show, :update, :destroy]
 
   def index
-    # @item = Item.all
+    # @items = Item.
+    # @items.order('created_at DESC')
   end
 
-#   def new
-#     @item = Item.new
-#   end
+  def new
+    @item = Item.new
+  end
 
-#   def create
-#     @item = Item.new(item_params)
-#     if @item.save
-#       redirect_to root_path
-#     else
-#       render :new
-#     end
-#   end
+  def create
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      render :new
+    end
+  end
 
 #   def show
 #   end
@@ -36,17 +38,17 @@ class ItemsController < ApplicationController
 #     # end
 #   end
 
-#   private
+  private
 
-#   def item_params
-#     params.require(:item).permit(:name, :image, :description, :category_id, :condition_id, :charge_id, :prefecture_id, :shipping_id, :price).merge(user_id: current_user.id)
-#   end
+  def item_params
+    params.require(:item).permit(:name, :image, :description, :category_id, :condition_id, :prefecture_id, :postage_id, :shipping_id, :price).merge(user_id: current_user.id)
+  end
 
-#   def move_to_index
-#     redirect_to action: :index unless user_signed_in?
-#   end
+  # def move_to_index
+  #   redirect_to action: :index unless user_signed_in?
+  # end
 
-#   def set_item
-#     @item = Item.find(params[:id])
-#   end
+  # def set_item
+  #   @item = Item.find(params[:id])
+  # end
 end

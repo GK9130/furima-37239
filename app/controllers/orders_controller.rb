@@ -27,16 +27,16 @@
 
 #   private
 
-#   # def order_params
-#   #   params.permit(:item_id, :token, :name, :price, :post_code, :prefectures, :city, :address, :build_number, :phone_number).merge(user_id: current_user.id)
-#   # end
+#   def order_params
+#     params.permit(:item_id, :token, :name, :price, :post_code, :prefectures, :city, :address, :build_number, :phone_number).merge(user_id: current_user.id)
+#   end
 
-#   # def pay_item
-#   #   Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-#   #   Payjp::Charge.create(
-#   #     amount: @item.price,
-#   #     card: order_params[:token],
-#   #     currency: 'jpy'
+#   def pay_item
+#     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+#     Payjp::Charge.create(
+#       amount: @item.price,
+#       card: order_params[:token],
+#       currency: 'jpy'
 #     )
 #   end
-# end
+end
