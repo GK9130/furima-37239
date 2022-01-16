@@ -21,7 +21,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    # @item = Item.new(item_params)
   end
 
 #   def edit
