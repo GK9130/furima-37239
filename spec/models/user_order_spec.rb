@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe UserOrder, type: :model do
-  describe '商品購入機能' do
     before do
-      @order_ = FactoryBot.build(:user_order, user_id: user.id, item_id: item.id)
+      @user_order = FactoryBot.build(:user_order)
     end
   
   describe '配送先情報の保存' do
@@ -12,35 +11,35 @@ RSpec.describe UserOrder, type: :model do
         expect(@user_order).to be_valid
       end
       it 'user_idが空でなければ保存できる' do
-        @userorder.user_id = 2
+        @user_order.user_id = 1
         expect(@user_order).to be_valid
       end
       it 'item_idが空でなければ保存できる' do
-        @userorder.item_id = 2
+        @user_order.item_id = 1
         expect(@user_order).to be_valid
       end
       it '郵便番号が「3桁＋ハイフン＋4桁」の組み合わせであれば保存できる' do
-        @userorder.post_code = '123-4560'
+        @user_order.post_code = '123-4560'
         expect(@user_order).to be_valid
       end
       it '都道府県が「---」以外かつ空でなければ保存できる' do
-        @userorder.prefecture_id = 2
+        @user_order.prefecture_id = 2
         expect(@user_order).to be_valid
       end
       it '市区町村が空でなければ保存できる' do
-        @userorder.city = '横浜市'
+        @user_order.city = '横浜市'
         expect(@user_order).to be_valid
       end
       it '番地が空でなければ保存できる' do
-        @userorder.address = '緑区１２３'
+        @user_order.address = '緑区１２３'
         expect(@user_order).to be_valid
       end
       it '建物名が空でも保存できる' do
-        @userorder.building_name = nil
+        @user_order.building_name = nil
         expect(@user_order).to be_valid
       end
       it '電話番号が11番桁以内かつハイフンなしであれば保存できる' do
-        @userorder.phone_number = 12_345_678_910
+        @user_order.phone_number = 12_345_678_910
         expect(@user_order).to be_valid
       end
     end
@@ -59,22 +58,17 @@ RSpec.describe UserOrder, type: :model do
       it '郵便番号が空だと保存できないこと' do
         @user_order.post_code = nil
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Post_code can't be blank", 'Post_code is invalid. Include hyphen(-)')
+        expect(@user_order.errors.full_messages).to include("Post code can't be blank", 'Post code is invalid. Include hyphen(-)')
       end
       it '郵便番号にハイフンがないと保存できないこと' do
         @user_order.post_code = 1_234_567
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Post_code is invalid. Include hyphen(-)')
-      end
-      it '都道府県が「---」だと保存できないこと' do
-        @user_order.prefecture_id = 0
-        @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Prefecture_id can't be blank")
+        expect(@user_order.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it '都道府県が空だと保存できないこと' do
         @user_order.prefecture_id = nil
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Prefecture_id can't be blank")
+        expect(@user_order.errors.full_messages).to include("Prefecture can't be blank", "Prefecture can't be blank")
       end
       it '市区町村が空だと保存できないこと' do
         @user_order.city = nil
@@ -84,7 +78,7 @@ RSpec.describe UserOrder, type: :model do
       it '番地が空だと保存できないこと' do
         @user_order.address = nil
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("address can't be blank")
+        expect(@user_order.errors.full_messages).to include("Address can't be blank")
       end
       it '電話番号が空だと保存できないこと' do
         @user_order.phone_number = nil

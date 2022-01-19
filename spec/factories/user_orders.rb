@@ -1,16 +1,14 @@
 FactoryBot.define do
   factory :user_order do
-    user_id      {}
-    item_id      {}
+    user_id      { 2 }
+    item_id      { 2 }
     post_code  { '123-4567' }
-    prefecture  { 1 }
+    prefecture_id  { 3 }
     city         { '横浜市' }
     address { '緑区' }
     building_name { '横浜ビル' }
     phone_number { '09012345678' }
-    token { }
+    token { 123 }
 
-    association :user
-    association :item
   end
 end
