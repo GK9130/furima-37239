@@ -4,6 +4,9 @@ class OrdersController < ApplicationController
   def index
     @user_order = UserOrder.new
     @item = Item.find(params[:item_id])
+    if @item.user_id == current_user.id || @item.order!= nil
+      return redirect_to root_path
+    end
   end
 
   def new
