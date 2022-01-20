@@ -73,6 +73,11 @@ RSpec.describe UserOrder, type: :model do
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Prefecture can't be blank")
       end
+      it '都道府県が「---」だと保存できないこと' do
+        @user_order.prefecture_id = nil
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Prefecture can't be blank")
+      end
       it '市区町村が空だと保存できないこと' do
         @user_order.city = nil
         @user_order.valid?
